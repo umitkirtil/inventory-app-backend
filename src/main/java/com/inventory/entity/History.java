@@ -26,5 +26,6 @@ public class History {
     @OneToOne
     private Category category;
 
+    @Enumerated(EnumType.STRING)
     private ProcessType processType;
 }

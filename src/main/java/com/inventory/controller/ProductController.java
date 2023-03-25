@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -55,6 +56,13 @@ public class ProductController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Integer> deleteProduct(@PathVariable Integer id){
         return productService.deleteProduct(id) ? ResponseEntity.ok(id) : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/update/product/")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product){
+        Optional<Product> productOptional = productService.updateProduct(product);
+
+        return productOptional.isPresent() ? ResponseEntity.ok(productOptional.get()) : ResponseEntity.notFound().build();
     }
 
 }

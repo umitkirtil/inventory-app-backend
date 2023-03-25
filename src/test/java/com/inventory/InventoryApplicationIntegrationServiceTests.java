@@ -58,7 +58,7 @@ class InventoryApplicationIntegrationServiceTests {
         Category kirtasiye = Category.builder().name("Kırtasiye").productList(Arrays.asList()).build();
         categoryRepository.save(kirtasiye);
 
-        Product kalem = Product.builder().name("Faber Castell 0.7 Uclu Versatil").category(kirtasiye).quantity(5).build();
+        Product kalem = Product.builder().name("Faber Castell Silgi").category(kirtasiye).quantity(5).build();
 
         Warehouse canakkaleDepo = Warehouse.builder().name("Canakkale Depo 2").state("Merkez / Canakkale").address("Canakkale").city("Canakkale").build();
         warehouseRepository.save(canakkaleDepo);
@@ -68,8 +68,6 @@ class InventoryApplicationIntegrationServiceTests {
 
         History history = History.builder().product(kalem).category(kirtasiye).processType(ProcessType.EKLENDI).warehouse(canakkaleDepo).build();
         historyService.saveHistory(history);
-
-
     }
 
 
