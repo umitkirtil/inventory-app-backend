@@ -1,9 +1,6 @@
 package com.inventory.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.data.jpa.domain.AbstractAuditable;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,9 +9,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "history")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @OneToOne
+    private Product product;
+
+    @OneToOne
+    private Warehouse warehouse;
+
+    @OneToOne
+    private Category category;
+
+    private ProcessType processType;
 }

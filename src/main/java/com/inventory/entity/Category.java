@@ -1,8 +1,6 @@
 package com.inventory.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 
 import javax.persistence.*;
@@ -14,13 +12,16 @@ import java.util.List;
 @Entity
 @Table(name = "category")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Category {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-    private List<Product> productList = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> productList;
+
+    private String name;
 }
